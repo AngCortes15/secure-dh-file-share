@@ -31,6 +31,21 @@ Show Image
 ⚡ Performance: Redis for cache and sessions
 🛡️ Security Headers: CORS, CSP, HSTS configured
 
+Example of using case:
+
+  Sending a file:
+  1. Alice selects file + Bob's username
+  2. Frontend fetches Bob's public key from server
+  3. Alice's browser encrypts file with Bob's public key
+  4. Encrypted file uploaded to server
+
+  Receiving a file:
+  1. Bob downloads encrypted file
+  2. Bob's browser uses his private key (stored locally) to decrypt
+  3. Server never sees the decrypted content
+
+  Critical Security Point: The server can never decrypt files because it doesn't have anyone's private keys!
+
 🏗️ Architecture
 mermaidgraph TB
     subgraph "Frontend"
@@ -66,23 +81,6 @@ mermaidgraph TB
     J --> L
 Components
 ComponentTechnologyPortDescriptionFrontendHTML + CSS + JS3000SPA with client-side cryptoBackendFastAPI + Python8000REST API with JWTDatabasePostgreSQL5432Metadata and usersCacheRedis6379Sessions and cacheMonitoringPrometheus9090System metricsDashboardGrafana3001Visualization and alerts
-
-Example:
-
-  Sending a file:
-  1. Alice selects file + Bob's username
-  2. Frontend fetches Bob's public key from server
-  3. Alice's browser encrypts file with Bob's public key
-  4. Encrypted file uploaded to server
-
-  Receiving a file:
-  1. Bob downloads encrypted file
-  2. Bob's browser uses his private key (stored locally) to decrypt
-  3. Server never sees the decrypted content
-
-  Critical Security Point: The server can never decrypt files because it doesn't have anyone's private keys!
-
-
 
 
 🚀 Quick Start
