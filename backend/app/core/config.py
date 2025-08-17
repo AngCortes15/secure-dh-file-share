@@ -12,11 +12,11 @@ class Setting(BaseSettings):
     debug: bool = False
 
     # Database
-    database_url: str = "postgresql://postgres:postgres@localhost:5432/secure_files"
+    database_url: str = "postgresql://user:password123@localhost:5432/secure_files"
     database_echo: bool = False # To see exactly what SQL queries are being generated and executed
 
     # Security
-    jwt_secret_key: str
+    jwt_secret_key: str = "dev-secret-key-change-in-production"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     refresh_token_expire_days: int = 7
@@ -33,7 +33,7 @@ class Setting(BaseSettings):
 
     # Monitoring
     prometheus_metrics: bool = True
-    grafana_admin_password: str
+    grafana_admin_password: str = "admin"
 
     # Environment Detection
     environment: str = "development"
