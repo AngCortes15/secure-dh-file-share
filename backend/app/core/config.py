@@ -12,7 +12,7 @@ class Setting(BaseSettings):
     debug: bool = False
 
     # Database
-    database_url: str = "postgresql://user:password123@localhost:5432/secure_files"
+    database_url: str = "postgresql://user:password123@db_postgres:5432/secure_files"
     database_echo: bool = False # To see exactly what SQL queries are being generated and executed
 
     # Security
